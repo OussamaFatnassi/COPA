@@ -4,9 +4,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import colors from "./theme/colors";
 import typography from "./theme/typography";
+import { useFonts } from "expo-font";
 
 // Import your LoginScreen component
 import LoginScreen from "./pages/LoginScreen";
+import CreationEspaceScreen from "./pages/CreationEspace";
 
 const Stack = createStackNavigator();
 
@@ -28,6 +30,14 @@ function SplashScreen({ navigation }) {
 }
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Urbanist: require("./assets/fonts/Urbanist-Regular.ttf"),
+    "Urbanist-Bold": require("./assets/fonts/Urbanist-Bold.ttf"),
+    "Urbanist-SemiBold": require("./assets/fonts/Urbanist-SemiBold.ttf"),
+    "Urbanist-Medium": require("./assets/fonts/Urbanist-Medium.ttf"),
+    "Urbanist-Light": require("./assets/fonts/Urbanist-Light.ttf"),
+  });
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -36,6 +46,7 @@ export default function App() {
       >
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="CreationEspace" component={CreationEspaceScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
